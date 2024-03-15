@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'channels',
+    'channels',
+    'websocketapp',
     'main',
 ]
 
@@ -88,7 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tsp.wsgi.application'
-
+ASGI_APPLICATION = 'tsp.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
