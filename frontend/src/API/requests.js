@@ -3,19 +3,12 @@ const serverAPI = {
 }
 
 function getHealthCheck() {
-  let newData = {fact:'Ошибка', length: 'Ошибка'};
-  fetch(serverAPI.healthCheck)
+  return fetch(serverAPI.healthCheck)
     .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Ошибка при запросе к API');
-      }
+      return response.json().then(data => {
+        return data;
+      })
     })
-    .then(data => {
-      newData = data;
-    })
-  return newData;
 }
 
 export {
