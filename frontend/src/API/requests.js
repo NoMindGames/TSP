@@ -1,5 +1,7 @@
+const SERVER_HOST = 'localhost:8000';
+
 const serverAPI = {
-  healthCheck: 'https://catfact.ninja/fact'
+  healthCheck: SERVER_HOST + '/healthcheck'
 }
 
 function getHealthCheck() {

@@ -10,11 +10,16 @@ function App() {
 
   const handleClose = () => setModalVisible(false);
   const handleClick = () => {
-    getHealthCheck().then((data) => {
+    getHealthCheck()
+    .then((data) => {
       setData(data)
       setError(!data);
       setModalVisible(true);
-    });
+    })
+    .catch(() => {
+      setError(true);
+      setModalVisible(true);
+    })
   }
   return (
     <div className="app">
@@ -22,8 +27,8 @@ function App() {
         <button className='app-button' onClick={handleClick}> Health Check </button>
         {modalVisible && !error && <Modal closeModal={handleClose}>
           <h3 className='modal-caption'> Успех!</h3>
-          <p className='modal-description'>Описание: {data.fact}</p>
-          <p className='modal-description'>Длина: {data.length}</p>
+          <p className='modal-description'>Статус: {data.status}</p>
+          <p className='modal-description'>Версия backend: {data.backend_version}</p>
         </Modal>}
         {modalVisible && error && <Modal closeModal={handleClose}>
           <h3 className='modal-caption modal-error'> Ошибка!</h3>

@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
 
-  background-color: #282c34; /* rgba(140, 174, 200, 0.8)*/
+  background-color: rgba(140, 174, 200, 0.2); /* rgba(140, 174, 200, 0.8)*/
   overflow-y: hidden;
   overscroll-behavior: contain;
   pointer-events: auto;
@@ -22,7 +22,7 @@
   min-height: 285px;
   max-height: calc(100vh - 60px);
   padding: 72px 40px 36px;
-  background-color: rgba(204, 206, 204, 0.8); /*rgb(255, 255, 255) */
+  background-color: rgb(204, 206, 204); /*rgb(255, 255, 255) */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   box-sizing: border-box;
