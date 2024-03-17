@@ -1,16 +1,23 @@
-const SERVER_HOST = 'http://127.0.0.1:8000';
+const SERVER_HOST = '127.0.0.1:8000';
 
 const serverAPI = {
-  healthCheck: `${SERVER_HOST}/healthcheck`
+  healthCheck: `http://${SERVER_HOST}/healthcheck`
 };
 
-function getHealthCheck() {
+function getHealthCheck(successCb, errorCb, finalyCb) {
   return fetch(serverAPI.healthCheck)
-    .then((response) =>
-      response.json().then((data) =>
-        data
-      )
-    );
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+
+      const { statusText, status } = response;
+      throw new Error(`${status} - ${statusText}`);
+    })
+    .then((response) => response.json)
+    .then((data) => successCb(data))
+    .catch((error) => errorCb(error.message))
+    .finally(finalyCb);
 }
 
 export {

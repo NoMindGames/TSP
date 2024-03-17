@@ -10,17 +10,12 @@ function App() {
 
   const handleClose = () => setModalVisible(false);
   const handleClick = () => {
-    getHealthCheck()
-      .then((rdata) => {
-        setData(rdata);
-        setError(!rdata);
-        setModalVisible(true);
-      })
-      .catch(() => {
-        setError(true);
-        setModalVisible(true);
-      });
+    getHealthCheck(setData, (err) => {
+      setError(true);
+      setData({error: err});
+    }, () => setModalVisible(true));
   };
+
   return (
     <div className="app">
       <header className='app-header'>
@@ -34,7 +29,7 @@ function App() {
         {modalVisible && error &&
         <Modal closeModal={handleClose}>
           <h3 className='modal-caption modal-error'> Ошибка!</h3>
-          <p className='modal-description'> Ошибка подключения к API.</p>
+          <p className='modal-description'> {data.error} </p>
         </Modal>}
       </header>
     </div>
