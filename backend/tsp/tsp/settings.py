@@ -15,6 +15,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
 load_dotenv()
 
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
@@ -23,12 +26,10 @@ REDIS_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [REDIS_URL],
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Используйте 'channels.layers.RedisChannelLayer' для Redis
     },
 }
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,8 +89,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tsp.wsgi.application'
-ASGI_APPLICATION = 'tsp.asgi.application'
+#WSGI_APPLICATION = 'tsp.wsgi.application'
+ASGI_APPLICATION = 'tsp.routing.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
