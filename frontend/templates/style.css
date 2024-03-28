@@ -1,0 +1,120 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 190px 0;
+  font-family: "Bellota";
+  font-size: 20px;
+  color: #FFFFFF;
+  background-image: url(img/background.png);
+  background-size: cover;
+  background-position: center;
+  background-color: #404080;
+}
+
+.main-window {
+  width: 480px;
+  margin: 0 auto;
+  padding: 55px 0;
+  background-color: rgba(64, 64, 128, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 10px 0 0 rgba(48, 48, 96, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-btn {
+  display: block;
+  width: 250px;
+  margin-bottom: 30px;
+  padding: 13px 0 12px 0;
+  color: #FFFFFF;
+  text-decoration: none;
+  background-color: #30B080;
+  border-radius: 10px;
+  box-shadow: 0 5px 0 0 rgba(48, 176, 128, 0.5);
+  text-align: center;
+}
+
+.main-btn:last-child {
+  margin-bottom: 0;
+}
+
+.main-btn:hover {
+  background-color: rgba(48, 176, 128, 0.75);
+  box-shadow: 0 5px 0 0 rgba(48, 176, 128, 0.38);
+}
+
+.main-btn:active {
+  background-color: rgba(48, 176, 128, 0.5);
+  box-shadow: none;
+}
+
+.custom-input {
+  box-sizing: border-box;
+  font: inherit;
+  width: 250px;
+  margin-bottom: 30px;
+  padding: 13px 0 12px 0;
+  color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgba(32, 112, 240, 1);
+  text-decoration: none;
+  background-color: rgba(187, 221, 255, 1);
+  border-radius: 10px;
+  box-shadow: 0 5px 0 0 rgba(187, 221, 255, 0.5);
+  text-align: center;
+}
+
+.text-show {
+  margin-bottom: 40px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert {
+  width: 700px;
+  padding: 13px 0 12px 0;
+  margin-bottom: 10px;
+  background-color: rgba(64, 64, 128, 0.75);
+  border: 2px solid gray;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.alert.warning {
+  color: #F02000;
+  border-color: #C02000;
+}
+
+.alert.success {
+  color: #30F080;
+  border-color: #30B080;
+}
+
+@media (max-width: 700px) {
+  .alert {
+    width: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .main-window {
+    width: 300px;
+  }
+}
