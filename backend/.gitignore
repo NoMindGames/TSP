@@ -3,7 +3,7 @@
 *.pot
 *.pyc
 **/__pycache__/
-
+**/.idea
 
 # Environments
 .env
@@ -13,5 +13,3 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-
