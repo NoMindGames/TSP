@@ -8,6 +8,7 @@ import { AlertContainer, Alert } from './components/alert-container.jsx';
 function App() {
   const [page, setPage] = React.useState(AppRoutes.INITIAL);
   const [alerts, setAlerts] = React.useState([]);
+  const [alertId, setAlertId] = React.useState(0);
 
   const goConnect = function () {
     setPage(AppRoutes.CONNECTION_LOBBY);
@@ -17,10 +18,18 @@ function App() {
     setPage(AppRoutes.CREATE_LOBBY);
   };
 
+  const addAlert = (alert) => {
+    setAlerts((prev) => [...prev, {id: alertId, ...alert}]);
+    setAlertId((prev) => prev + 1);
+    setTimeout(() => {
+      setAlerts((prev) => prev.slice(1));
+    }, 1500);
+  };
+
   const getPage = function (route) {
     switch (route) {
       case AppRoutes.INITIAL:
-        return <InitialPage goConnect={goConnect} goCreate={goCreate} setAlerts={setAlerts} />;
+        return <InitialPage goConnect={goConnect} goCreate={goCreate} addAlert={addAlert} />;
       case AppRoutes.CONNECTION_LOBBY:
         return <ConnectionLobbyPage />;
       case AppRoutes.CREATE_LOBBY:
@@ -32,8 +41,7 @@ function App() {
     <>
       {getPage(page)}
       <AlertContainer>
-        {alerts.map(
-          ({ text, isSuccess }, index) => (<Alert key={index} text={text} isSuccess={isSuccess} />))}
+        {alerts.map(({ id, text, isSuccess }) => (<Alert key={id} text={text} isSuccess={isSuccess} />))}
       </AlertContainer>
     </>
   );

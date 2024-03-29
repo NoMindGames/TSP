@@ -1,13 +1,13 @@
 import React from 'react';
 import { getHealthCheck } from '../api/requests.js';
 
-function InitialPage({ goCreate, goConnect, setAlerts }) {
+function InitialPage({ goCreate, goConnect, addAlert }) {
   const healthCheck = function () {
     getHealthCheck(
       (data) => {
-        setAlerts([{ text: `Успех! Статус: ${data.status}, версия backend: ${data.backend_version}`, isSuccess: true }]);
+        addAlert({ text: `Успех! Статус: ${data.status}, версия backend: ${data.backend_version}`, isSuccess: true });
       }, () => {
-        setAlerts([{ text: 'Ошибка подключения к серверу', isSuccess: false }]);
+        addAlert({ text: 'Ошибка подключения к серверу', isSuccess: false });
       }, () => { }
     );
   };
