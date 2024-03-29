@@ -4,17 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Присоединение к лобби</title>
+  <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bellota&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main class="main-window">
-    <p class="main-title">Выбери псевдоним и идентификатор лобби</p>
-    <input type="text" id="nameInput">
-    <input type="text" id="lobbyInput">
-    <a class="main-btn" href="#">Присоединиться к лобби</a>
-  </main>
+  <div id="root">
+    <main class="main-window">
+      <p class="main-title">Выбери псевдоним и идентификатор лобби</p>
+      <input type="text" id="nameInput" placeholder="Member#1">
+      <input type="text" id="lobbyInput" placeholder="#123456">
+      <a class="main-btn" href="#">Присоединиться к лобби</a>
+      <a class="cross" href="#">
+        <img src="img/cross.svg" width="20" height="20">
+      </a>
+    </main>
+  </div>
 </body>
 </html>

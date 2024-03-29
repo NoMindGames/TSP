@@ -12,11 +12,11 @@ function InitialPage({ goCreate, goConnect, addAlert }) {
     );
   };
   return (
-    < >
+    <main className="main-window">
       <a className="main-btn" href="#" onClick={goCreate}>Создать лобби</a>
       <a className="main-btn" href="#" onClick={goConnect}>Присоединиться к лобби</a>
       <a className="main-btn" href="#" onClick={healthCheck} >Health Check</a>
-    </>
+    </main>
   );
 }
 
