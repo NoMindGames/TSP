@@ -1,10 +1,6 @@
-html {
-  height: 100%;
-}
-
 body {
   margin: 0;
-  padding: 190px 0;
+  padding: 0;
 
   font-family: "Bellota";
   font-size: 20px;
@@ -16,17 +12,29 @@ body {
   background-color: #404080;
 }
 
+#root {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-window {
   width: 480px;
+  min-height: 200px;
   margin: 0 auto;
   padding: 55px 0;
   border-radius: 10px;
+  position: relative;
 
   background-color: rgba(64, 64, 128, 0.9);
   box-shadow: 0 10px 0 0 rgba(48, 48, 96, 0.9);
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -34,7 +42,7 @@ body {
   display: block;
   width: 250px;
   margin-bottom: 30px;
-  padding: 13px 0 12px 0;
+  padding: 14px 0 13px 0;
   border-radius: 10px;
 
   color: #FFFFFF;
@@ -59,11 +67,19 @@ body {
   box-shadow: none;
 }
 
-main input[type="text"] {
+.main-title {
+  margin-bottom: 40px;
+  max-width: 252px;
+
+  font-size: 24px;
+  text-align: center;
+}
+
+input[type="text"] {
   box-sizing: border-box;
   width: 250px;
   margin-bottom: 30px;
-  padding: 13px 0 12px 0;
+  padding: 12px 0 11px 0;
   border: 2px solid #2070F0;
   border-radius: 10px;
 
@@ -75,16 +91,23 @@ main input[type="text"] {
   box-shadow: 0 5px 0 0 rgba(187, 221, 255, 0.5);
 }
 
-main input[type="text"].error {
+input[type="text"].error {
   border-color: #F04020;
 }
 
-.main-title {
-  margin-bottom: 40px;
-  max-width: 252px;
+.cross {
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 
-  font-size: 24px;
-  text-align: center;
+.cross:hover {
+  opacity: 0.75;
+}
+
+.cross:active {
+  opacity: 0.5;
 }
 
 .alert-container {
@@ -96,7 +119,7 @@ main input[type="text"].error {
   padding: 20px 0;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
 }
 
@@ -106,9 +129,11 @@ main input[type="text"].error {
   margin-bottom: 10px;
   border: 2px solid gray;
   border-radius: 20px;
+  box-sizing: border-box;
 
   text-align: center;
   background-color: rgba(64, 64, 128, 0.75);
+  animation: hideAlert 1.5s forwards;
 }
 
 .alert.warning {
@@ -121,13 +146,27 @@ main input[type="text"].error {
   border-color: #30B080;
 }
 
-@media (max-width: 700px) {
-  .alert {
-    width: 300px;
+@keyframes hideAlert {
+  100% {
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 700px) {
+  .alert {
+    width: 480px;
+  }
+}
+
+@media (max-width: 500px) {
+  .alert {
+    width: 300px;
+  }
+
   .main-window {
     width: 300px;
   }

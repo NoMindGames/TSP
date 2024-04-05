@@ -8,19 +8,24 @@ import { AlertContainer, Alert } from './components/alert-container.jsx';
 function App() {
   const [page, setPage] = React.useState(AppRoutes.INITIAL);
   const [alerts, setAlerts] = React.useState([]);
-  const [alertId, setAlertId] = React.useState(0);
 
-  const goConnect = function () {
+  const goConnect = function (evt) {
+    evt.preventDefault();
     setPage(AppRoutes.CONNECTION_LOBBY);
   };
 
-  const goCreate = function () {
+  const goCreate = function (evt) {
+    evt.preventDefault();
     setPage(AppRoutes.CREATE_LOBBY);
   };
 
+  const goInitial = function (evt) {
+    evt.preventDefault();
+    setPage(AppRoutes.INITIAL);
+  };
+
   const addAlert = (alert) => {
-    setAlerts((prev) => [...prev, {id: alertId, ...alert}]);
-    setAlertId((prev) => prev + 1);
+    setAlerts((prev) => [...prev, alert]);
     setTimeout(() => {
       setAlerts((prev) => prev.slice(1));
     }, 1500);
@@ -31,9 +36,9 @@ function App() {
       case AppRoutes.INITIAL:
         return <InitialPage goConnect={goConnect} goCreate={goCreate} addAlert={addAlert} />;
       case AppRoutes.CONNECTION_LOBBY:
-        return <ConnectionLobbyPage />;
+        return <ConnectionLobbyPage goInitial={goInitial}/>;
       case AppRoutes.CREATE_LOBBY:
-        return <CreateLobbyPage />;
+        return <CreateLobbyPage goInitial={goInitial}/>;
     }
   };
 
@@ -41,7 +46,8 @@ function App() {
     <>
       {getPage(page)}
       <AlertContainer>
-        {alerts.map(({ id, text, isSuccess }) => (<Alert key={id} text={text} isSuccess={isSuccess} />))}
+        {alerts.map(({ text, isSuccess }, index) => (
+          <Alert key={index} text={text} isSuccess={isSuccess} />))}
       </AlertContainer>
     </>
   );
