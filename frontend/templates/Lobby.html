@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bellota&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div id="root">
-    <!-- Здесь должна находиться вёрстка лобби -->
+    <main class="lobby">
+      <section class="lobby-header">
+        <button class="logout-btn">Выйти</button>
+        <h1 class="lobby-title">Название Лобби</h1>
+        <button class="create-btn">Готово</button>
+      </section>
+      <section class="lobby-members">
+        <h2>Участники Лобби</h2>
+        <ul class="lobby-members-list">
+          <li class="lobby-member">
+            <img src="img/question.svg" width="30px" height="30px"> Master
+          </li>
+          <li class="lobby-member">
+            <img src="img/question.svg" width="30px" height="30px"> Member1</li>
+          <li class="lobby-member lobby-member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px"> Member2</li>
+        </ul>
+      </section>
+      <section class="lobby-content"> games</section>
+      <section class="lobby-chat">
+        <h2>Чат Лобби</h2>
+        <div class="chat-messages">
+          <input type="text" class="chat-input" placeholder="Введите сообщение...">
+          <button type="submit" class="chat-btn">
+            <img src="img/send.svg" width="20px" height="20px">
+          </button>
+        </div>
+      </section>
+    </main>
   </div>
 </body>
+
 </html>

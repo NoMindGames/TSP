@@ -10,6 +10,8 @@ body {
   background-size: cover;
   background-position: center;
   background-color: #404080;
+
+  overflow: auto;
 }
 
 #root {
@@ -145,6 +147,174 @@ input[type="text"].error {
   color: #30F080;
   border-color: #30B080;
 }
+
+.lobby {
+  display: grid;
+  grid-template-columns: 250px 420px 250px;
+  grid-template-rows: auto;
+  gap: 20px;
+  grid-template-areas:
+      "lobby-header lobby-header lobby-header"
+      "lobby-members lobby-content lobby-chat";
+}
+
+.lobby-header {
+  grid-area: lobby-header;
+  width: 960px;
+  height: 70px;
+  top: 75px;
+  left: 203px;
+  padding: 20px 0px 0px 0px; /* Внутренние отступы (сверху, справа, снизу, слева) */
+  gap: 0px;
+  background-color: #404080;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 90%;
+  box-shadow: 0px 10px 0px 0px #303060E5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logout-btn{
+  background-color:#B03030;
+  color: #fff;
+  width: 150px;
+  height: 30px;
+  top: 20px;
+  left: 20px;
+  padding: 2px 44px 3px 44px;
+  gap: 0px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 5px 0px 0px rgba(176, 48, 48, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.lobby-title {
+  flex: 1; /* Растягиваем заголовок, чтобы он занимал все доступное пространство */
+  text-align: center; /* Выравниваем текст по центру */
+  width: 150px;
+  height: 30px;
+  top: 20px;
+  left: 405px;
+  padding: 0px 0px 0px 3px;
+  gap: 0px;
+  opacity: 0px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.create-btn {
+  background-color:#30B080;
+  color: #fff;
+  width: 150px;
+  height: 30px;
+  top: 20px;
+  left: 790px;
+  padding: 3px 49px 2px 48px;
+  gap: 0px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 5px 0px 0px rgba(48, 176, 128, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.lobby-members {
+  grid-area: lobby-members;
+  width: 250px;
+  height: 480px;
+  top: 165px;
+  left: 203px;
+  gap: 0px;
+  background-color:#404080;
+  border-radius: 10px 5px 5px 10px;
+  opacity: 90%;
+  box-shadow: 0px 10px 0px 0px rgba(48, 48, 96, 0.9);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lobby-members-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 440px;
+  overflow-y: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.lobby-member {
+  background-color:#8080FF;
+  width: 190px;
+  height: 40px;
+  top: 80px;
+  left: 30px;
+  padding: 5px 63px 5px 5px;
+  gap: 0px;
+  border-radius: 20px 10px 10px 20px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  border: 2px solid #383870;
+  display: flex;
+  align-items: center;
+}
+
+.lobby-member-empty {
+  background-color: #383870;
+  border: 2px solid #8080FF;
+}
+
+.lobby-member img {
+  margin-right: 5px;
+}
+
+.lobby-content {
+  grid-area: lobby-content;
+  width: 420px;
+  height: 480px;
+  top: 165px;
+  left: 473px;
+  gap: 0px;
+  background-color: #404080;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 90%;
+  box-shadow: 0px 10px 0px 0px rgba(48, 48, 96, 0.9);
+}
+
+.lobby-chat {
+  grid-area: lobby-chat;
+  width: 250px;
+  height: 480px;
+  top: 165px;
+  left: 913px;
+  gap: 0px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #404080;;
+  opacity: 90%;
+  box-shadow: 0px 10px 0px 0px rgba(48, 48, 96, 0.9);
+  text-align: center;
+}
+
+.chat-input {
+  background-color:#8080FF;
+  width: 190px;
+  height: 30px;
+  top: 440px;
+  left: 30px;
+  padding: 5px 0px 0px 0px;
+  gap: 0px;
+  border-radius: 5px 15px 15px 5px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  border: 2px solid #383870;
+}
+
+
 
 @keyframes hideAlert {
   100% {
