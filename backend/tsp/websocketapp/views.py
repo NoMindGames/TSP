@@ -1,18 +1,44 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import ChatRoom, Message
+from .models import ChatRoom, Message, Lobby
 from django.http import JsonResponse
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from . import config
+from channels.routing import ProtocolTypeRouter, URLRouter
 
-def lobby(request):
-    if request.method == 'POST':
-        room_name = request.POST.get('room_name')
-        if room_name:
-            room, created = ChatRoom.objects.get_or_create(name=room_name)
-            return redirect('chatroom', room_name=room_name)
-    rooms = ChatRoom.objects.all()
-    return render(request, 'websocketapp/index.html', {'rooms': rooms})
+
+def lobby_create(request):
+    lobby = Lobby()
+    lobby.url_socket = 'URLRouter'
+    lobby.users_count = 1
+    lobby.save()
+    context = {
+        'lobby_id': lobby.id,
+        'url': lobby.url_socket,
+        'user_id': lobby.users_count
+    }
+    return JsonResponse(context)
+    # room_name = request.POST.get('room_name')
+    # if room_name:
+    # room, created = ChatRoom.objects.get_or_create(name=room_name)
+    # return redirect('chatroom', room_name=room_name)
+    # rooms = ChatRoom.objects.all()
+    # return render(request, 'websocketapp/index.html', {'rooms': rooms})
+
+
+def lobby_connection(request):
+    if request.method == 'GET':
+        lobby_id = request.GET.get('id')
+        lobby = Lobby.objects.filter(id=lobby_id)[0]
+        lobby.users_count += 1
+        lobby.save()
+        context = {
+            'lobby_id': lobby_id,
+            'url': lobby.url_socket,
+            'user_id': lobby.users_count,
+        }
+        return JsonResponse(context)
 
 def chatroom(request, room_name):
     if request.method == 'POST':
