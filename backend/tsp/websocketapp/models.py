@@ -16,9 +16,7 @@ class Message(models.Model):
 class Lobby(models.Model):
     id = models.AutoField('ID', primary_key=True)
     url_socket = models.TextField('URL', default='NULL')
-    users_quantity = models.IntegerField('USERS QUANTITY', default=0)
-    users_id = models.CharField('USERS ID', default=[0], max_length=100,
-                                validators=[validate_comma_separated_integer_list])
+    users_count = models.IntegerField('USERS COUNT', default=0)
 
     def __str__(self):
         return self.id

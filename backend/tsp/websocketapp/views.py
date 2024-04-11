@@ -11,12 +11,12 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 def lobby_create(request):
     lobby = Lobby()
     lobby.url_socket = 'URLRouter'
-    lobby.users_quantity = 1
+    lobby.users_count = 1
     lobby.save()
     context = {
         'id': lobby.id,
         'url': lobby.url_socket,
-        'id_host': lobby.users_id[0]
+        'id_master': lobby.users_count
     }
     return JsonResponse(context)
     # room_name = request.POST.get('room_name')
@@ -29,21 +29,19 @@ def lobby_create(request):
 
 def lobby_connection(request):
     if request.method == 'GET':
-        #lobby_id = Lobby.id()
         lobby_id = request.GET.get('id')
-        lobby = Lobby.objects.filter(id=lobby_id)
-        if lobby.users_quantity == 10:
+        lobby = Lobby.objects.filter(id=lobby_id)[0]
+        if lobby.users_count == 10:
             return JsonResponse({'success': False}, 'Lobby is full')
         else:
-            lobby.users_quantity += 1
-            lobby.users_id.append(lobby.users_id[len(lobby.users_id)-1]+1)
-        lobby.save()
-        context = {
-            'url': lobby.url_socket,
-            'user_id': lobby.users_id[len(lobby.users_id) - 1],
-            'lobby': lobby_id
-        }
-        return JsonResponse(context)
+            lobby.users_count += 1
+            lobby.save()
+            context = {
+                'url': lobby.url_socket,
+                'user_id': lobby.users_count,
+                'lobby_id': lobby_id
+            }
+            return JsonResponse(context)
 
 def chatroom(request, room_name):
     if request.method == 'POST':

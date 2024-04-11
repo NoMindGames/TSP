@@ -9,6 +9,7 @@
 .env
 .venv
 env/
+myenv/
 venv/
 ENV/
 env.bak/
