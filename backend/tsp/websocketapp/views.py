@@ -8,20 +8,17 @@ from . import config
 from channels.routing import ProtocolTypeRouter, URLRouter
 
 
-def lobby(request):
-    if request.method == 'GET':
-        lobby = Lobby(request.GET)
-        config.id_lobby = config.id_lobby + 1
-        lobby.id = config.id_lobby
-        lobby.is_open = True
-        lobby.url_socket = URLRouter(websocket_urlpatterns)
-        lobby.save()
-        context = {
-            'id': lobby.id,
-            'url': lobby.url_socket
-        }
-        return JsonResponse({'sucsess': True}, context)
-    return JsonResponse({'success': False, 'error': 'Invalid request'})
+def lobby_create(request):
+    lobby = Lobby()
+    lobby.url_socket = 'URLRouter'
+    lobby.users_quantity = 1
+    lobby.save()
+    context = {
+        'id': lobby.id,
+        'url': lobby.url_socket,
+        'id_host': lobby.users_id[0]
+    }
+    return JsonResponse(context)
     # room_name = request.POST.get('room_name')
     # if room_name:
     # room, created = ChatRoom.objects.get_or_create(name=room_name)
@@ -32,28 +29,21 @@ def lobby(request):
 
 def lobby_connection(request):
     if request.method == 'GET':
-        lobby = Lobby(request.GET)
-        if lobby.is_open:
-            k = 0
-            for i in range(len(config.list_users)):
-                if config.list_users[i] != 0:
-                    k = k+1
-                    if i == 0:
-                        config.list_users[i] = 1
-                        context={
-                            'id_users': config.list_users[i]
-                        }
-                        return JsonResponse({'sucsess': True}, context)
-                    else:
-                        config.list_users[i] = config.list_users[i - 1] + 1
-                        context = {
-                            'id_users': config.list_users[i]
-                        }
-                        return JsonResponse({'sucsess': True}, context)
-            if k == len(config.list_users):
-                return JsonResponse({'success': False, 'error': 'Lobby is full'})
-    return JsonResponse({'success': False, 'error': 'Invalid request'})
-
+        #lobby_id = Lobby.id()
+        lobby_id = request.GET.get('id')
+        lobby = Lobby.objects.filter(id=lobby_id)
+        if lobby.users_quantity == 10:
+            return JsonResponse({'success': False}, 'Lobby is full')
+        else:
+            lobby.users_quantity += 1
+            lobby.users_id.append(lobby.users_id[len(lobby.users_id)-1]+1)
+        lobby.save()
+        context = {
+            'url': lobby.url_socket,
+            'user_id': lobby.users_id[len(lobby.users_id) - 1],
+            'lobby': lobby_id
+        }
+        return JsonResponse(context)
 
 def chatroom(request, room_name):
     if request.method == 'POST':

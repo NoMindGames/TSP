@@ -1,3 +1,4 @@
+from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
 
@@ -13,13 +14,15 @@ class Message(models.Model):
 
 
 class Lobby(models.Model):
-    id = models.CharField('ID', max_length=8, primary_key=True, unique=True)
-    is_open = models.BooleanField('Status', default=False)
-    url_socket = models.TextField('URL')
+    id = models.AutoField('ID', primary_key=True)
+    url_socket = models.TextField('URL', default='NULL')
+    users_quantity = models.IntegerField('USERS QUANTITY', default=0)
+    users_id = models.CharField('USERS ID', default=[0], max_length=100,
+                                validators=[validate_comma_separated_integer_list])
 
     def __str__(self):
         return self.id
 
     class Meta:
         verbose_name = 'Lobby'
-        verbose_name_plural = 'Lobby'
+        verbose_name_plural = 'Lobbies'
