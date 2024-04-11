@@ -14,9 +14,9 @@ def lobby_create(request):
     lobby.users_count = 1
     lobby.save()
     context = {
-        'id': lobby.id,
+        'lobby_id': lobby.id,
         'url': lobby.url_socket,
-        'id_master': lobby.users_count
+        'user_id': lobby.users_count
     }
     return JsonResponse(context)
     # room_name = request.POST.get('room_name')
@@ -31,17 +31,14 @@ def lobby_connection(request):
     if request.method == 'GET':
         lobby_id = request.GET.get('id')
         lobby = Lobby.objects.filter(id=lobby_id)[0]
-        if lobby.users_count == 10:
-            return JsonResponse({'success': False}, 'Lobby is full')
-        else:
-            lobby.users_count += 1
-            lobby.save()
-            context = {
-                'url': lobby.url_socket,
-                'user_id': lobby.users_count,
-                'lobby_id': lobby_id
-            }
-            return JsonResponse(context)
+        lobby.users_count += 1
+        lobby.save()
+        context = {
+            'lobby_id': lobby_id,
+            'url': lobby.url_socket,
+            'user_id': lobby.users_count,
+        }
+        return JsonResponse(context)
 
 def chatroom(request, room_name):
     if request.method == 'POST':
