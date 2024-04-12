@@ -165,14 +165,13 @@ body {
   grid-area: lobby-header;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   padding: 20px;
   border-radius: 10px;
   background-color: rgba(64, 64, 128, 0.9);
   box-shadow: 0px 10px 0px 0px rgba(48, 48, 96, 0.9);
-
-  align-items: center;
 }
 
 .lobby-btn {
@@ -180,11 +179,10 @@ body {
 
   width: 150px;
   min-height: 30px;
-  padding: 2px 0px 3px 0px;
+  padding: 2px 0px 3px;
   border-radius: 10px;
 
   color: #FFFFFF;
-  text-decoration: none;
   text-align: center;
 
   background-color: #30B080;
@@ -258,7 +256,7 @@ h3.lobby-title {
   overflow-x: hidden;
 
   scrollbar-width: auto;
-  scrollbar-color: #8080FF rgba(64, 64, 128, 0.9);
+  scrollbar-color: #8080FF #404080;
 }
 
 .lobby-member {
@@ -307,7 +305,6 @@ h3.lobby-title {
 
   background-color: rgba(64, 64, 128, 0.9);
   box-shadow: 0px 10px 0px 0px rgba(48, 48, 96, 0.9);
-  text-align: center;
 }
 
 .chat-messages {
