@@ -1,16 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import ChatRoom, Message, Lobby
 from django.http import JsonResponse
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
-from . import config
-from channels.routing import ProtocolTypeRouter, URLRouter
 
+def get_url(request, lobby_id):
+    return f'ws://{request.get_host()}/ws/lobby/{lobby_id}/'
 
 def lobby_create(request):
     lobby = Lobby()
-    lobby.url_socket = 'URLRouter'
+    lobby.save()
+    lobby.url_socket = get_url(request, lobby.id)
     lobby.users_count = 1
     lobby.save()
     context = {
@@ -19,12 +16,6 @@ def lobby_create(request):
         'user_id': lobby.users_count
     }
     return JsonResponse(context)
-    # room_name = request.POST.get('room_name')
-    # if room_name:
-    # room, created = ChatRoom.objects.get_or_create(name=room_name)
-    # return redirect('chatroom', room_name=room_name)
-    # rooms = ChatRoom.objects.all()
-    # return render(request, 'websocketapp/index.html', {'rooms': rooms})
 
 
 def lobby_connection(request):
@@ -40,14 +31,5 @@ def lobby_connection(request):
         }
         return JsonResponse(context)
 
-def chatroom(request, room_name):
-    if request.method == 'POST':
-        message_content = request.POST.get('message')
-        if message_content:
-            room, created = ChatRoom.objects.get_or_create(name=room_name)
-            Message.objects.create(room=room, content=message_content, sender=request.user)
-            # После сохранения сообщения перенаправляем обратно на страницу комнаты
-            return redirect('chatroom', room_name=room_name)
-    room, created = ChatRoom.objects.get_or_create(name=room_name)
-    messages = Message.objects.filter(room=room).order_by('-timestamp')[:50]
-    return render(request, 'websocketapp/chatroom.html', {'room_name': room_name, 'messages': messages})
+def healthcheck(request):
+    return JsonResponse({'status': 'ok', 'backend_version': '1.0'})
