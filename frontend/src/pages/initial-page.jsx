@@ -4,16 +4,17 @@ import { useDispatch } from 'react-redux';
 import { AppRoutes } from '../utils/utils.js';
 import { setPage } from '../store/page-slice.js';
 import { getHealthCheck } from '../api/requests.js';
+import { addAlert } from '../store/alert-slice.js';
 
-function InitialPage({ addAlert }) {
+function InitialPage() {
   const dispatch = useDispatch();
 
   const healthCheck = function () {
     getHealthCheck(
       (data) => {
-        addAlert({ text: `Успех! Статус: ${data.status}, версия backend: ${data.backend_version}`, isSuccess: true });
+        dispatch(addAlert({ text: `Успех! Статус: ${data.status}, версия backend: ${data.backend_version}`, isSuccess: true }));
       }, () => {
-        addAlert({ text: 'Ошибка подключения к серверу', isSuccess: false });
+        dispatch(addAlert({ text: 'Ошибка подключения к серверу', isSuccess: false }));
       }, () => { }
     );
   };
