@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Lobby, Users, Chat
+from .models import Lobby, User, Message
 
 admin.site.register(Lobby)
-admin.site.register(Users)
-admin.site.register(Chat)
+admin.site.register(User)
+admin.site.register(Message)

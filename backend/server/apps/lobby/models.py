@@ -4,7 +4,6 @@ from django.db import models
 class Lobby(models.Model):
     id = models.AutoField('id', primary_key=True)
     url_socket = models.TextField('url', default='NULL')
-    #users_count = models.IntegerField('users_count', default=0)
 
     def __str__(self):
         return f"{self.id}"
@@ -14,13 +13,11 @@ class Lobby(models.Model):
         verbose_name_plural = 'Lobbies'
 
 
-class Users(models.Model):
+class User(models.Model):
     id = models.AutoField('id', primary_key=True)
     name = models.TextField('name', default='NULL')
     is_master = models.BooleanField('master', default = False)
-    #lobby_id = models.AutoField('lobby_id')
     lobby_id = models.ForeignKey(Lobby, on_delete=models.CASCADE, verbose_name="id")
-    #lobby_id = models.ManyToOneRel()
 
     def __str__(self):
         return f"{self.id}"
@@ -30,11 +27,10 @@ class Users(models.Model):
         verbose_name_plural = 'Users'
 
 
-class Chat(models.Model):
+class Message(models.Model):
     message_id = models.AutoField('id', primary_key=True)
     text = models.TextField('text', default='NULL')
-    #user_id = models.AutoField('user_id')
-    user_id = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f"{self.message_id}"

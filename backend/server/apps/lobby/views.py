@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .models import Lobby, Users
+from .models import Lobby, User
 
 
 def get_url(request, lobby_id):
@@ -14,7 +14,7 @@ def create(request):
         lobby.url_socket = get_url(request, lobby.id)
         lobby.save()
 
-        user = Users(name=lobby_master, is_master=True, lobby_id=lobby)
+        user = User(name=lobby_master, is_master=True, lobby_id=lobby)
         user.save()
         context = {
             'lobby_id': lobby.id,
@@ -35,7 +35,7 @@ def connection(request):
         lobby.save()
 
 
-        user = Users(name=user_name, is_master=False, lobby_id=lobby)
+        user = User(name=user_name, is_master=False, lobby_id=lobby)
         user.save()
 
         context = {
