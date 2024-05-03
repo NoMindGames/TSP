@@ -1,8 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import Members from './lobby-components/members.jsx';
 import LobbyChat from './lobby-components/lobby-chat.jsx';
 
-function LobbyPage({goInitial, lobbyId}) {
+import { AppRoutes } from '../utils/utils.js';
+import { setPage } from '../store/page-slice.js';
+
+function LobbyPage({lobbyId}) {
+  const dispatch = useDispatch();
   const messages = new Array(10);
   const names = ['Master', 'Member#1', 'Member#2'];
 
@@ -13,7 +19,7 @@ function LobbyPage({goInitial, lobbyId}) {
   return (
     <main className="lobby">
       <section className="lobby-header">
-        <button className="lobby-btn lobby-exit" onClick={goInitial}>Выйти</button>
+        <button className="lobby-btn lobby-exit" onClick={() => dispatch(setPage({ page: AppRoutes.INITIAL }))}>Выйти</button>
         <h2 className="lobby-title">{`lobby#${lobbyId}`}</h2>
         <button className="lobby-btn">Готов</button>
       </section>
