@@ -9,6 +9,7 @@ def get_url(request, lobby_id):
 def create(request):
     if request.method == 'GET':
         lobby_master = request.GET.get('name')
+
         lobby = Lobby()
         lobby.save()
         lobby.url_socket = get_url(request, lobby.id)
@@ -23,8 +24,8 @@ def create(request):
             'is_master': user.is_master
         }
         return JsonResponse(context)
-    else:
-        return JsonResponse({'request': 'not GET'})
+
+    return JsonResponse({'request': 'not GET'})
 
 
 def connection(request):
@@ -32,8 +33,6 @@ def connection(request):
         lobby_id = request.GET.get('id')
         user_name = request.GET.get('name')
         lobby = Lobby.objects.get(id=lobby_id)
-        lobby.save()
-
 
         user = User(name=user_name, is_master=False, lobby_id=lobby)
         user.save()
@@ -45,8 +44,8 @@ def connection(request):
             'is_master': user.is_master
         }
         return JsonResponse(context)
-    else:
-        return JsonResponse({'request': 'not GET'})
+
+    return JsonResponse({'request': 'not GET'})
 
 
 def healthcheck(request):
