@@ -1,7 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { AppRoutes } from '../utils/utils.js';
+import { setPage } from '../store/page-slice.js';
 import { getHealthCheck } from '../api/requests.js';
 
-function InitialPage({ goCreate, goConnect, addAlert }) {
+function InitialPage({ addAlert }) {
+  const dispatch = useDispatch();
+
   const healthCheck = function () {
     getHealthCheck(
       (data) => {
@@ -11,12 +17,13 @@ function InitialPage({ goCreate, goConnect, addAlert }) {
       }, () => { }
     );
   };
+
   return (
-    < >
-      <a className="main-btn" href="#" onClick={goCreate}>Создать лобби</a>
-      <a className="main-btn" href="#" onClick={goConnect}>Присоединиться к лобби</a>
-      <a className="main-btn" href="#" onClick={healthCheck} >Health Check</a>
-    </>
+    <main className="main-window">
+      <button className="main-btn" onClick={() => dispatch(setPage({ page: AppRoutes.CREATE_LOBBY }))}>Создать лобби</button>
+      <button className="main-btn" onClick={() => dispatch(setPage({ page: AppRoutes.CONNECTION_LOBBY }))}>Присоединиться к лобби</button>
+      <button className="main-btn" onClick={healthCheck} >Health Check</button>
+    </main>
   );
 }
 

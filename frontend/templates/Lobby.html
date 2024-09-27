@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лобби</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bellota&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="root">
+    <main class="lobby">
+      <section class="lobby-header">
+        <button class="lobby-btn lobby-exit">Выйти</button>
+        <h2 class="lobby-title">lobby#123456</h2>
+        <button class="lobby-btn">Готов</button>
+      </section>
+      <section class="lobby-members">
+        <h3 class="lobby-title"><span>Участники</span> 2/10</h3>
+        <ul class="lobby-members-list">
+          <li class="lobby-member">
+            <img src="img/question.svg" width="30px" height="30px">
+            <p>Masterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+          </li>
+          <li class="lobby-member">
+            <img src="img/question.svg" width="30px" height="30px">
+            <p>Member#1</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+          <li class="lobby-member member-empty">
+            <img src="img/question-empty.svg" width="30px" height="30px">
+            <p>Empty</p>
+          </li>
+        </ul>
+      </section>
+      <section class="lobby-content"></section>
+      <section class="lobby-chat">
+        <h3 class="lobby-title">Чат</h3>
+        <ul class="chat-messages">
+          <li class="user-msg">
+            <p class="msg-name">you</p>
+            <p class="msg-text">ПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПривет</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1! Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!Здравствуй, Member#1!</p>
+          </li>
+          <li class="user-msg">
+            <p class="msg-name">you</p>
+            <p class="msg-text">Привет</p>
+          </li>
+          <li>
+            <p class="msg-name">Master</p>
+            <p class="msg-text">Здравствуй, Member#1!</p>
+          </li>
+        </ul>
+        <form class="chat-input">
+          <input type="text" placeholder="Сообщение">
+          <button type="submit">
+            <img src="img/send.svg" width="20px" height="20px">
+          </button>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

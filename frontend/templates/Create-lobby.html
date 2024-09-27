@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Создание лобби</title>
+  <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bellota&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main class="main-window">
-    <p class="main-title">Выбери псевдоним</p>
-    <input type="text" id="nameInput">
-    <a class="main-btn" href="#">Создать лобби</a>
-  </main>
+  <div id="root">
+    <main class="main-window">
+      <p class="main-title">Выбери псевдоним</p>
+      <input type="text" id="nameInput" placeholder="Master">
+      <button class="main-btn">Создать лобби</button>
+      <a class="cross">
+        <img src="img/cross.svg" width="20" height="20">
+      </a>
+    </main>
+  </div>
 </body>
 </html>
